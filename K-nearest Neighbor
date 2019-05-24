@@ -32,3 +32,18 @@ def classify(unknown, dataset, labels, k):
 print(classify([.4,.2,.9], movie_dataset, movie_labels, k=5))
 
 #good movie was predicted
+
+from movies import training_set, training_labels, validation_set, validation_labels
+
+  
+  
+def find_validation_accuracy(training_set, training_labels, validation_set, validation_labels, k):
+  num_correct = 0.0
+  for title in validation_set:
+    x = validation_set[title]
+    guess = classify(x, training_set, training_labels, k)
+    if guess == validation_labels[title]:
+      num_correct += 1
+  return num_correct/len(validation_set)
+
+print(find_validation_accuracy(training_set, training_labels, validation_set, validation_labels, 3))  
